@@ -1,0 +1,38 @@
+{
+  "profile1": {
+    "env": {
+      "ANTHROPIC_BASE_URL": "https://your-router.example.com/v1",
+      "ANTHROPIC_AUTH_TOKEN": "sk-416e168abb2ad812-ofa0ho-7a75157b",
+      "ANTHROPIC_MODEL": "cc/claude-sonnet-4-6",
+      "ANTHROPIC_DEFAULT_SONNET_MODEL": "cc/claude-sonnet-4-6",
+      "ANTHROPIC_DEFAULT_OPUS_MODEL": "cc/claude-opus-4-7",
+      "ANTHROPIC_DEFAULT_HAIKU_MODEL": "cc/claude-haiku-4-5-20251001"
+    },
+    "model": "sonnet"
+  },
+  "profile2": {
+    "env": {
+      "ANTHROPIC_BASE_URL": "https://your-router.example.com/v1",
+      "ANTHROPIC_AUTH_TOKEN": "sk-416e168abb2ad812-flika4-8ed415f2",
+      "ANTHROPIC_MODEL": null,
+      "ANTHROPIC_DEFAULT_SONNET_MODEL": null,
+      "ANTHROPIC_DEFAULT_OPUS_MODEL": null,
+      "ANTHROPIC_DEFAULT_HAIKU_MODEL": "cc/claude-haiku-4-5-20251001"
+    },
+    "hasCompletedOnboarding": true,
+    "model_slots": [
+      "ANTHROPIC_DEFAULT_SONNET_MODEL",
+      "ANTHROPIC_DEFAULT_OPUS_MODEL",
+      "ANTHROPIC_MODEL"
+    ],
+    "available_models": [
+      "alicode-intl/qwen3.5-plus",
+      "alicode-intl/kimi-k2.5",
+      "alicode-intl/glm-5",
+      "alicode-intl/MiniMax-M2.5",
+      "alicode-intl/qwen3-coder-next",
+      "alicode-intl/qwen3-coder-plus",
+      "alicode-intl/glm-4.7"
+    ]
+  }
+}
