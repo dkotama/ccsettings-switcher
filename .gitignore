@@ -1,0 +1,5 @@
+docs/
+.claude/
+preferences.json
+*.bak
+test_debug.sh

@@ -2,7 +2,7 @@
   "profile1": {
     "env": {
       "ANTHROPIC_BASE_URL": "https://your-router.example.com/v1",
-      "ANTHROPIC_AUTH_TOKEN": "sk-416e168abb2ad812-ofa0ho-7a75157b",
+      "ANTHROPIC_AUTH_TOKEN": "YOUR_API_KEY_HERE",
       "ANTHROPIC_MODEL": "cc/claude-sonnet-4-6",
       "ANTHROPIC_DEFAULT_SONNET_MODEL": "cc/claude-sonnet-4-6",
       "ANTHROPIC_DEFAULT_OPUS_MODEL": "cc/claude-opus-4-7",
@@ -13,7 +13,7 @@
   "profile2": {
     "env": {
       "ANTHROPIC_BASE_URL": "https://your-router.example.com/v1",
-      "ANTHROPIC_AUTH_TOKEN": "sk-416e168abb2ad812-flika4-8ed415f2",
+      "ANTHROPIC_AUTH_TOKEN": "YOUR_API_KEY_HERE",
       "ANTHROPIC_MODEL": null,
       "ANTHROPIC_DEFAULT_SONNET_MODEL": null,
       "ANTHROPIC_DEFAULT_OPUS_MODEL": null,
