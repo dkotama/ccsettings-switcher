@@ -26,7 +26,7 @@ load_profile() {
 
 get_preference() {
   local profile="$1" slot="$2"
-  [[ -f "$PREFERENCES_FILE" ]] || { echo ""; return; }
+  [[ -f "$PREFERENCES_FILE" ]] || return 0
   jq -r --arg p "$profile" --arg s "$slot" '.[$p][$s] // empty' "$PREFERENCES_FILE"
 }
 
@@ -57,7 +57,7 @@ prompt_model() {
   local i=1
   while IFS= read -r model; do
     echo "  $i) $model" >&2
-    ((i++))
+    i=$((i + 1))
   done < <(echo "$profile_json" | jq -r '.available_models[]')
   local choice
   while true; do
@@ -84,8 +84,9 @@ merge_into_settings() {
   mkdir -p "$dir"
   echo "$current" \
     | jq --argjson patch "$patch" '. * $patch' \
-    > "$SETTINGS_FILE.tmp" \
-    && mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
+    > "$SETTINGS_FILE.tmp"
+  # jq * does deep merge for objects but replaces arrays — current profiles have no array keys
+  mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
 }
 
 print_summary() {
@@ -140,7 +141,9 @@ main() {
 
   if [[ "$has_slots" == "true" ]]; then
     local announced=false
-    while IFS= read -r slot; do
+    local slots
+    mapfile -t slots < <(echo "$profile" | jq -r '.model_slots[]')
+    for slot in "${slots[@]}"; do
       local saved
       saved=$(get_preference "$profile_name" "$slot")
       if [[ -n "$saved" ]]; then
@@ -157,7 +160,7 @@ main() {
         save_preference "$profile_name" "$slot" "$chosen"
         resolved=$(echo "$resolved" | jq --arg s "$slot" --arg v "$chosen" '.env[$s] = $v')
       fi
-    done < <(echo "$profile" | jq -r '.model_slots[]')
+    done
   fi
 
   local patch

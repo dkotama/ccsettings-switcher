@@ -3,29 +3,28 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SCRIPT="$SCRIPT_DIR/cc-switch.sh"
-PROFILES="$SCRIPT_DIR/profiles.json"
 
 pass=0; fail=0
 
 assert_eq() {
   local desc="$1" expected="$2" actual="$3"
   if [[ "$actual" == "$expected" ]]; then
-    echo "  PASS: $desc"; ((pass++))
+    echo "  PASS: $desc"; pass=$((pass + 1))
   else
     echo "  FAIL: $desc"
     echo "    expected: $expected"
     echo "    actual:   $actual"
-    ((fail++))
+    fail=$((fail + 1))
   fi
 }
 
 assert_contains() {
   local desc="$1" needle="$2" haystack="$3"
   if echo "$haystack" | grep -qF "$needle"; then
-    echo "  PASS: $desc"; ((pass++))
+    echo "  PASS: $desc"; pass=$((pass + 1))
   else
     echo "  FAIL: $desc — '$needle' not found in output"
-    ((fail++))
+    fail=$((fail + 1))
   fi
 }
 
